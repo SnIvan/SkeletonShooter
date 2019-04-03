@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HFH-Q5-m1r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HFH-Q5-m1r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
         <!--Home View Controller-->
         <scene sceneID="9b5-QZ-kVN">
             <objects>
-                <viewController id="HFH-Q5-m1r" customClass="HomeViewController" customModule="UnicoptAR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HFH-Q5-m1r" customClass="HomeViewController" customModule="SkeletonShooter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UTd-lI-9dA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -21,10 +21,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRJ-g0-KFt" userLabel="Container 1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="222.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynY-MC-eST" userLabel="Score Label">
-                                        <rect key="frame" x="52" y="168" width="271" height="47"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="40"/>
-                                        <nil key="textColor"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynY-MC-eST" userLabel="Score Label">
+                                        <rect key="frame" x="114" y="168" width="147" height="52"/>
+                                        <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="40"/>
+                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tRJ-g0-KFt" firstAttribute="trailing" secondItem="e4G-KC-ge3" secondAttribute="trailing" id="1Fa-we-AQH"/>
                             <constraint firstItem="tRJ-g0-KFt" firstAttribute="leading" secondItem="e4G-KC-ge3" secondAttribute="leading" id="3nK-y4-hS0"/>
@@ -88,7 +88,7 @@
         <!--View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="UnicoptAR" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="SkeletonShooter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U0K-SW-4ec">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -105,8 +105,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6L-hz-HXZ" userLabel="Container 2">
                                         <rect key="frame" x="0.0" y="222.5" width="375" height="222"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="target" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-D9-LD1">
-                                                <rect key="frame" x="137.5" y="61" width="100" height="100"/>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="aim" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-D9-LD1">
+                                                <rect key="frame" x="172" y="96" width="30" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="3Kr-St-v8m"/>
                                                     <constraint firstAttribute="width" constant="100" id="Z59-gv-PbK"/>
@@ -121,26 +121,23 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Tg-2a-Rcx" userLabel="Container 3">
                                         <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIG-g5-046" userLabel="scoreLabel">
-                                                <rect key="frame" x="20" y="142.5" width="60" height="60"/>
-                                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kills" translatesAutoresizingMaskIntoConstraints="NO" id="ANH-4c-BQE">
+                                                <rect key="frame" x="8" y="143" width="101" height="71"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="fBL-IV-plG">
+                                                <rect key="frame" x="266" y="142.5" width="101" height="71"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIG-g5-046" userLabel="scoreLabel">
+                                                <rect key="frame" x="46" y="168" width="25" height="30"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="bbX-qk-xvy"/>
                                                     <constraint firstAttribute="width" constant="60" id="juC-Ta-5xx"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8S-Wd-dEU" userLabel="timerLabel">
-                                                <rect key="frame" x="295" y="142.5" width="60" height="60"/>
-                                                <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="Yd3-bh-p0N"/>
-                                                    <constraint firstAttribute="width" constant="60" id="mrL-vl-vme"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ML-FJ-dyF" userLabel="bulletButton">
@@ -149,11 +146,22 @@
                                                     <constraint firstAttribute="height" constant="60" id="iQS-sP-MJb"/>
                                                     <constraint firstAttribute="width" constant="60" id="x11-Eu-vQc"/>
                                                 </constraints>
-                                                <state key="normal" image="mossbergShotgun"/>
+                                                <state key="normal" image="fireButton"/>
                                                 <connections>
                                                     <action selector="onBulletButton:" destination="BV1-FR-VrT" eventType="touchUpInside" id="3LN-ms-Ewg"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8S-Wd-dEU" userLabel="timerLabel">
+                                                <rect key="frame" x="297" y="162" width="39" height="41"/>
+                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="60" id="Yd3-bh-p0N"/>
+                                                    <constraint firstAttribute="width" constant="60" id="mrL-vl-vme"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
+                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="E8S-Wd-dEU" secondAttribute="bottom" constant="20" id="MSa-pv-eur"/>
@@ -210,8 +218,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mossbergShotgun" width="341" height="341"/>
+        <image name="aim" width="28" height="27"/>
+        <image name="fireButton" width="128" height="128"/>
+        <image name="kills" width="79" height="79"/>
         <image name="playButton" width="360" height="360"/>
-        <image name="target" width="341" height="341"/>
+        <image name="timer" width="79" height="79"/>
     </resources>
 </document>
