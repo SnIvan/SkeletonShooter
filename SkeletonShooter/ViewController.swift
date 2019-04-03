@@ -282,7 +282,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         case "bullet":
             nodeDirection  = SCNVector3(direction.x * 4, direction.y * 4, direction.z * 4)
             node.physicsBody?.applyForce(nodeDirection, at: SCNVector3(0.1, 0, 0), asImpulse: true)
-            playSound(sound: "mossbergShotgun", format: "wav")
+            playSound(sound: "gunSound", format: "wav")
             
             // Remove ball after 3 seconds
             let disapear = SCNAction.fadeOut(duration: 0.3)
@@ -369,9 +369,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         var node = SCNNode()
         
         let scene = SCNScene(named: "art.scnassets/unii1.scn")
-        node = (scene?.rootNode.childNode(withName: "head", recursively: true)!)!
+        node = (scene?.rootNode.childNode(withName: "devil", recursively: true)!)!
         node.scale = SCNVector3(0.5, 0.5, 0.5)
-        node.name = "head"
+        node.name = "devil"
         
         node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         node.physicsBody?.isAffectedByGravity = false
@@ -463,9 +463,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
                 self.scoreLabel.text = String(self.score)
             }
             
-            playSound(sound: "explosion", format: "mp3")
-            let explosion = SCNParticleSystem(named: "fire", inDirectory: nil)
-            contact.nodeB.addParticleSystem(explosion!)
+            playSound(sound: "kaboom", format: "mp3")
+            let kaboom = SCNParticleSystem(named: "fire", inDirectory: nil)
+            contact.nodeB.addParticleSystem(kaboom!)
         }
     }
     
@@ -493,7 +493,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // Background music method
     func playBackgroundMusic(){
         let audioNode = SCNNode()
-        let audioSource = SCNAudioSource(fileNamed: "savage.aiff")!
+        let audioSource = SCNAudioSource(fileNamed: "wow.aiff")!
         let audioPlayer = SCNAudioPlayer(source: audioSource)
         
         audioNode.addAudioPlayer(audioPlayer)
