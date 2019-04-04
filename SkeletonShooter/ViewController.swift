@@ -16,26 +16,21 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - VARIABLES
     ////////////////////
     
-    // Used to instantiate sceneView
+    
     @IBOutlet var sceneView: ARSCNView!
     
-    // Used to display target to player
     @IBOutlet weak var target: UIImageView!
     
-    // Used to display timer to player
     @IBOutlet weak var timerLabel: UILabel!
     
-    // Used to display score to player
     @IBOutlet weak var scoreLabel: UILabel!
     
-    // Used to store the score
     var score = 0
     
     ///////////////////
     // MARK: - BUTTONS
     //////////////////
     
-    // Bullet button
     @IBOutlet weak var onBulletButton: UIButton!
     @IBAction func onBulletButton(_ sender: Any) {
         fireMissile(type: "bullet")
@@ -45,7 +40,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - CREATE NODES
     ///////////////////////
     
-    // Create trackerNode and gameNode and position vector
     var center: CGPoint!
     let trackerNode = SCNScene(named: "art.scnassets/tracker.scn")!.rootNode
     var gameNode = SCNScene(named: "art.scnassets/scene.scn")!.rootNode
@@ -55,7 +49,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - GAME STATE
     /////////////////////
     
-    // Create game state
     var isGameOn = false
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
@@ -71,7 +64,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
-    // Get position for arrow placement
     func getAveragePosition(from positions: ArraySlice<SCNVector3>) -> SCNVector3 {
         var averageX : Float = 0
         var averageY : Float = 0
@@ -89,22 +81,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     // Create game loop
     func initGame() {
-        // Show buttons and labels on init
         target.isHidden = false
         timerLabel.isHidden = false
         onBulletButton.isHidden = false
         scoreLabel.isHidden = false
         
-        // Add skull
         addSkulls()
         
-        // Play background music
         playBackgroundMusic()
         
-        // Start timer
         runTimer()
         
-        // Set game on
         isGameOn = true
     }
     
@@ -149,29 +136,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = false
         
-        // Create default lighting
         self.sceneView.autoenablesDefaultLighting = true
         
-        // Set the physics delegate
         sceneView.scene.physicsWorld.contactDelegate = self
         
-        // Update the labels cornerRadius at runtime
         timerLabel.layer.masksToBounds = true
         timerLabel.layer.cornerRadius = 30
         scoreLabel.layer.masksToBounds = true
         scoreLabel.layer.cornerRadius = 30
         
-        // Obtain center of camera view and add arrow node
         center = view.center
         sceneView.scene.rootNode.addChildNode(trackerNode)
         
-        // Hide buttons and labels on init
         target.isHidden = true
         timerLabel.isHidden = true
         onBulletButton.isHidden = true
@@ -181,20 +161,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         
-        // Create environmental lighting
         configuration.environmentTexturing = .automatic
         
-        // Run the view's session
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Pause the view's session
         sceneView.session.pause()
     }
     
@@ -202,31 +178,24 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - TIMERS
     /////////////////
     
-    // Add skulls timers to stop new skulls being init after game session
     var skullTimer1 = Timer()
     var skullTimer2 = Timer()
     
-    // Add skull method init a timer
     func addSkulls() {
         skullTimer1 = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.addSkull1TargetNodes)), userInfo: nil, repeats: true)
         skullTimer2 = Timer.scheduledTimer(timeInterval: 3, target: self, selector: (#selector(self.addSkull2TargetNodes)), userInfo: nil, repeats: true)
     }
     
-    // To store how many sceonds the game is played for
     var seconds = 30
     
-    // Timer
     var timer = Timer()
     
-    // To keep track of whether the timer is on
     var isTimerRunning = false
     
-    // To run the timer
     func runTimer() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(self.updateTimer)), userInfo: nil, repeats: true)
     }
     
-    // Decrements seconds by 1, updates the timerLabel and calls gameOver if seconds is 0
     @objc func updateTimer() {
         if seconds == 0 {
             timer.invalidate()
@@ -237,7 +206,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
-    // Resets the timer
     func resetTimer() {
         timer.invalidate()
         seconds = 30
@@ -249,14 +217,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     ////////////////////
     
     func gameOver() {
-        // Store the score in UserDefaults
         let defaults = UserDefaults.standard
         defaults.set(score, forKey: "score")
         
-        // Go back to the Home View Controller
         self.dismiss(animated: true, completion: nil)
         
-        // Invalidate skull timers
         skullTimer1.invalidate()
         skullTimer2.invalidate()
     }
@@ -265,14 +230,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     // MARK: - MISSILES & TARGETS
     /////////////////////////////
     
-    // Creates skull1 or skull2 node and 'fires' it
     func fireMissile(type : String){
         var node = SCNNode()
         
-        // Create node
         node = createMissile(type: type)
         
-        // Get the users position and direction
         let (direction, position) = self.getUserVector()
         node.position = position
         
@@ -302,7 +264,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     func createMissile(type: String) -> SCNNode {
         var node = SCNNode()
         
-        // Using case statement to allow variations of scale and rotations
         switch type {
         case "bullet":
             let scene = SCNScene(named: "art.scnassets/bullet.scn")
@@ -327,38 +288,31 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @objc func addSkull1TargetNodes() {
         var node = SCNNode()
         
-        let scene = SCNScene(named: "art.scnassets/skull.scn")
-        node = (scene?.rootNode.childNode(withName: "skull", recursively: true)!)!
+        let scene = SCNScene(named: "art.scnassets/SceneKit.scn")
+        node = (scene?.rootNode.childNode(withName: "Boin", recursively: true)!)!
         node.scale = SCNVector3(0.5, 0.5, 0.5)
-        node.name = "skull"
+        node.name = "Boin"
         
         node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         node.physicsBody?.isAffectedByGravity = false
         
-        // Place randomly, within thresholds
         node.position = SCNVector3(randomFloat(min: -2, max: 2), randomFloat(min: -2, max: 2), -8)
         
-        // Create smoke particle system
         let particleSystem = SCNParticleSystem(named: "smoke.scnp", inDirectory: nil)
         let particleNode = SCNNode()
         particleNode.addParticleSystem(particleSystem!)
         
-        // Add particle to the skull
         node.addChildNode(particleNode)
         particleNode.position = SCNVector3Make(0, 0, 0)
         
-        // For the collision detection
         node.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         node.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
         
-        // Remove skull after 3 seconds
         let disapear = SCNAction.fadeOut(duration: 0.3)
         node.runAction(.sequence([.wait(duration: 3), disapear]))
         
-        // Add to scene
         sceneView.scene.rootNode.addChildNode(node)
         
-        // Accelerate
         let force = simd_make_float4(0, 0, randomFloat(min: 5, max: 10), 0)
         let rotatedForce = simd_mul(node.presentation.simdTransform, force)
         let vectorForce = SCNVector3(rotatedForce.x, rotatedForce.y, rotatedForce.z)
@@ -376,30 +330,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         node.physicsBody?.isAffectedByGravity = false
         
-        // Place randomly, within thresholds
         node.position = SCNVector3(randomFloat(min: -2, max: 2), randomFloat(min: -2, max: 2), -8)
         
-        // Create smoke particle system
         let particleSystem = SCNParticleSystem(named: "smoke.scnp", inDirectory: nil)
         let particleNode = SCNNode()
         particleNode.addParticleSystem(particleSystem!)
         
-        // Add particle to the skull
         node.addChildNode(particleNode)
         particleNode.position = SCNVector3Make(0, 0, 0)
         
-        // For the collision detection
         node.physicsBody?.categoryBitMask = CollisionCategory.targetCategory.rawValue
         node.physicsBody?.contactTestBitMask = CollisionCategory.missileCategory.rawValue
         
-        // Remove skull after 2 seconds
         let disapear = SCNAction.fadeOut(duration: 0.3)
         node.runAction(.sequence([.wait(duration: 2), disapear]))
         
-        // Add to scene
         sceneView.scene.rootNode.addChildNode(node)
         
-        // Accelerate
         let force = simd_make_float4(0, 0, randomFloat(min: 20, max: 60), 0)
         let rotatedForce = simd_mul(node.presentation.simdTransform, force)
         let vectorForce = SCNVector3(rotatedForce.x, rotatedForce.y, rotatedForce.z)
@@ -414,36 +361,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
-        // Release any cached data, images, etc that aren't in use
     }
     
     /////////////////////////////
     // MARK: - ARSCNVIEWDELEGATE
     ////////////////////////////
     
-    /*
-     // Override to create and configure nodes for anchors added to the view's session.
-     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
-     let node = SCNNode()
-     
-     return node
-     }
-     */
-    
     func session(_ session: ARSession, didFailWithError error: Error) {
-        // Present an error message to the user
     }
     
     func sessionWasInterrupted(_ session: ARSession) {
-        // Inform the user that the session has been interrupted, for example, by presenting an overlay
     }
     
     func sessionInterruptionEnded(_ session: ARSession) {
-        // Reset tracking and/or remove existing anchors if consistent tracking is required
     }
     
     ////////////////////////////
-    // MARK: - CONTACT DELEGATE
+    // MARK: - delegate
     ///////////////////////////
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -475,7 +409,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     
     var player: AVAudioPlayer?
     
-    // Audio player method for bullet and explosion
     func playSound(sound : String, format: String) {
         guard let url = Bundle.main.url(forResource: sound, withExtension: format) else { return }
         do {
@@ -490,7 +423,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
-    // Background music method
     func playBackgroundMusic(){
         let audioNode = SCNNode()
         let audioSource = SCNAudioSource(fileNamed: "wow.aiff")!
@@ -512,7 +444,6 @@ struct CollisionCategory: OptionSet {
     static let otherCategory = CollisionCategory(rawValue: 1 << 2)
 }
 
-// Helper function inserted by Swift 4.2 migrator
 fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
     return input.rawValue
 }

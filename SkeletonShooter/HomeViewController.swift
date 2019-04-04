@@ -13,19 +13,18 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let defaults = UserDefaults.standard
         if let gameScore = defaults.value(forKey: "score") {
             let score = gameScore as! Int
-            scoreLabel.text = "Latest Score: \(String(score))"
+            scoreLabel.text = "score: \(String(score))"
         }
     }
     
     @IBAction func onPlayButton(_ sender: Any) {
-        performSegue(withIdentifier: "homeToGameSegue", sender: self)
+        performSegue(withIdentifier: "mainToGame", sender: self)
     }
     
     @IBOutlet weak var scoreLabel: UILabel!
@@ -33,7 +32,6 @@ class HomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
-        // Dispose of any resources that can be recreated.
     }
     
     /*

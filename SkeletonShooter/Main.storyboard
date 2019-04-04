@@ -78,7 +78,7 @@
                     </view>
                     <connections>
                         <outlet property="scoreLabel" destination="ynY-MC-eST" id="sto-rs-9DX"/>
-                        <segue destination="BV1-FR-VrT" kind="presentation" identifier="homeToGameSegue" id="UaY-W7-6It"/>
+                        <segue destination="BV1-FR-VrT" kind="presentation" identifier="mainToGame" id="UaY-W7-6It"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="afc-yC-kfx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -122,11 +122,11 @@
                                         <rect key="frame" x="0.0" y="444.5" width="375" height="222.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="kills" translatesAutoresizingMaskIntoConstraints="NO" id="ANH-4c-BQE">
-                                                <rect key="frame" x="8" y="143" width="101" height="71"/>
+                                                <rect key="frame" x="8" y="109" width="101" height="105"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="timer" translatesAutoresizingMaskIntoConstraints="NO" id="fBL-IV-plG">
-                                                <rect key="frame" x="266" y="142.5" width="101" height="71"/>
+                                                <rect key="frame" x="264" y="109" width="103" height="105"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIG-g5-046" userLabel="scoreLabel">
