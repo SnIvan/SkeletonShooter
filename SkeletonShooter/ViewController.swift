@@ -288,10 +288,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, SCNPhysicsContactDele
     @objc func addSkull1TargetNodes() {
         var node = SCNNode()
         
-        let scene = SCNScene(named: "art.scnassets/SceneKit.scn")
-        node = (scene?.rootNode.childNode(withName: "Boin", recursively: true)!)!
+        let scene = SCNScene(named: "art.scnassets/plane.scn")
+        node = (scene?.rootNode.childNode(withName: "plane", recursively: true)!)!
         node.scale = SCNVector3(0.5, 0.5, 0.5)
-        node.name = "Boin"
+        node.name = "plane"
         
         node.physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
         node.physicsBody?.isAffectedByGravity = false
